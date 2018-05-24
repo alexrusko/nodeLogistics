@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>nodeLogistics</title>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="resources/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-truck"></i> nodeLogistics</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto justify-content-end">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Járművek</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="products.html">Termékek</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-nav">
+            <h2>XYZ-123 Renault Kangoo</h2>
+            <span class="vehicle-info">Státusz:
+                <strong>Telephelyen várakozik</strong>
+            </span>
+            <span class="vehicle-info">Szabad kapacitás:
+                <strong>80 db</strong>
+            </span>
+            <a href="index.html">
+                <i class="fas fa-arrow-left"></i> Vissza</a>
+            <a href="#" style="margin-left: 20px" data-toggle="modal" data-target="#addItemModal">
+                <i class="fas fa-plus-circle"></i> Termék hozzáadása járműhöz</a>
+        </div>
+        <div class="content">
+            <div class="card">
+                <img class="card-img-top" src="https://images.kogan.com/image/fetch/s--hxOQ6jKg--/b_white,c_pad,f_auto,h_630,q_auto:good,w_1200/https://assets.kogan.com/files/product/HKI/apple/Iphone8Plus_GRY.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Apple Iphone 8</h5>
+                    <hr>
+                    <p class="card-text">Mennyiség:
+                        <strong>20 db</strong>
+                    </p>
+                    <p class="card-text">Érték:
+                        <strong>250 000 Ft</strong>
+                    </p>
+                    <a href="#">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="https://images.kogan.com/image/fetch/s--hxOQ6jKg--/b_white,c_pad,f_auto,h_630,q_auto:good,w_1200/https://assets.kogan.com/files/product/HKI/apple/Iphone8Plus_GRY.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Apple Iphone 8</h5>
+                    <hr>
+                    <p class="card-text">Mennyiség:
+                        <strong>20 db</strong>
+                    </p>
+                    <p class="card-text">Érték:
+                        <strong>250 000 Ft</strong>
+                    </p>
+                    <a href="#">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="https://images.kogan.com/image/fetch/s--hxOQ6jKg--/b_white,c_pad,f_auto,h_630,q_auto:good,w_1200/https://assets.kogan.com/files/product/HKI/apple/Iphone8Plus_GRY.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Apple Iphone 8</h5>
+                    <hr>
+                    <p class="card-text">Mennyiség:
+                        <strong>20 db</strong>
+                    </p>
+                    <p class="card-text">Érték:
+                        <strong>250 000 Ft</strong>
+                    </p>
+                    <a href="#">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <button class="btn btn-primary vehicleControlButton">Jármű indítása</button>
+            <button class="btn btn-primary vehicleControlButton" style="display: none;">Jármű érkeztetése</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Copyright 2018 nodeLogistics</p>
+    </footer>
+
+    <div id="addItemModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Termék hozzáadása járműhöz</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="productSelect">Termék neve</label>
+                            <select class="form-control" id="productSelect">
+                                <option>Válasszon terméket</option>
+                                <option>Apple iPhone 8</option>
+                                <option>Apple iPhone X</option>
+                                <option>Apple iPod Shuffle</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Mennyiség</label>
+                            <input type="number" class="form-control" id="quantity" placeholder="db"></input>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Mégse</button>
+                    <button type="button" class="btn btn-success">Hozzáad</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

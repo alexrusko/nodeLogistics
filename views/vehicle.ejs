@@ -1,0 +1,129 @@
+<% include partials/header %>
+
+    <div class="container">
+        <div class="page-nav">
+            <h2>
+                <%= vehicle.licensePlate %>
+                    <%= vehicle.type%>
+            </h2>
+            <span class="vehicle-info">Státusz:
+                <strong>
+                    <%= vehicle.state%>
+                </strong>
+            </span>
+            <span class="vehicle-info">Szabad kapacitás:
+                <strong>
+                    <%= vehicle.maxCapacity-vehicle.currentCapacity%> db</strong>
+            </span>
+            <a href="/vehicleList">
+                <i class="fas fa-arrow-left"></i> Vissza</a>
+                <% if (vehicle.state !== 'Úton') { %>
+            <a href="#" style="margin-left: 20px" data-toggle="modal" data-target="#addItemModal">
+                <i class="fas fa-plus-circle"></i> Termék hozzáadása járműhöz</a>
+                <% } %>
+        </div>
+        <div class="content">
+            <% vehicle._storage.forEach((transferItem) => { %>
+                <div class="card">
+                    <img class="card-img-top" src="<%= transferItem.imageUrl %>"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= transferItem.name %></h5>
+                        <hr>
+                        <p class="card-text">Mennyiség:
+                            <strong><%= transferItem.quantity %> db</strong>
+                        </p>
+                        <p class="card-text">Érték:
+                            <strong><%= transferItem.value %> Ft</strong>
+                        </p>
+                        <% if (vehicle.state !== 'Úton') { %>
+                        <a href="#" onclick="confirmModal('/vehicles/<%= vehicle.id %>/remove/<%= transferItem.id %>', 'delete')" data-toggle="modal" data-target="#confirmModal">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+
+            <% if (vehicle.state === 'Telephelyen várakozik') { %>
+            <a class="btn btn-primary vehicleControlButton" href="#" onclick="confirmModal('/vehicles/<%= vehicle.id %>/depart', 'vehicleAction')" data-toggle="modal" data-target="#confirmModal">Jármű indítása</a>
+            <% } %>
+            <% if (vehicle.state === 'Úton') { %>
+            <a class="btn btn-primary vehicleControlButton" href="#" onclick="confirmModal('/vehicles/<%= vehicle.id %>/arrive', 'vehicleAction')" data-toggle="modal" data-target="#confirmModal">Jármű érkeztetése</a>
+            <% } %>
+        </div>
+    </div>
+
+    <div id="addItemModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Termék hozzáadása járműhöz</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" method="POST" action="/vehicles/<%= vehicle.id %>/addItem">
+                        <div class="form-group">
+                            <label for="productSelect">Termék neve</label>
+                            <select name="product" class="form-control" id="productSelect">
+                                <option value="-">Válasszon terméket</option>
+                                <% productList.forEach((product) => { %>
+                                    <option value="<%= product._id %>">
+                                        <%= product.name %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Mennyiség</label>
+                            <input type="number" name="quantity" class="form-control" id="quantity" placeholder="db"></input>
+                        </div>
+                        <div id="quantityAlert" style="display:none;" class="alert alert-danger" role="alert"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Mégse</button>
+                    <button id="submitBtn" type="button" class="btn btn-success">Hozzáad</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 id="confirmTitle"></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nem</button>
+                    <a id="confirmBtn" class="btn">Igen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% include partials/footer %>
+
+        <script>
+            $('#submitBtn').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    method: 'post',
+                    url: '/vehicles/<%= vehicle.id %>/addItem',
+                    data: $('#form').serialize(),
+                }).done(function() {
+                    document.location.reload();
+                }).fail(function(res) {
+                    $('#quantityAlert').css('display', 'block');
+                    $('#quantityAlert').text(res.responseText);
+                });
+                // $.post('/vehicles/<%= vehicle.id %>/addItem',
+                //     $('#form').serialize(),
+                //     function (data, status, xhr) {
+                //         document.location.reload();
+                //     });
+            });
+        </script>

@@ -1,0 +1,33 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="page-nav">
+        <h2>Új jármű felvétele</h2>
+        <a href="/vehicles">
+            <i class="fas fa-arrow-left"></i> Vissza</a>
+    </div>
+    <div class="content">
+        <form method="POST">
+            <div class="form-group">
+                <label for="vehicleModel">Jármű model</label>
+                <input type="text" value="<%= typeof vehicle === 'undefined' ? '' : vehicle.type %>" class="form-control" id="vehicleModel" name="type" placeholder="pl. Renault Kangoo">
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Kép URL</label>
+                <input type="text" value="<%= typeof vehicle === 'undefined' ? '' : vehicle.imageUrl %>" class="form-control" name="imageUrl" id="imageUrl">
+            </div>
+            <div class="form-group">
+                <label for="licensePlate">Rendszám</label>
+                <input type="text" value="<%= typeof vehicle === 'undefined' ? '' : vehicle.licensePlate %>" class="form-control" name="licensePlate" id="licensePlate">
+            </div>
+            <div class="form-group" style="<%= typeof vehicle === 'undefined' ? '' : 'display:none' %>">
+                <label for="capacity">Kapacitás</label>
+                <input type="number" value="<%= typeof vehicle === 'undefined' ? '' : vehicle.maxCapacity %>" class="form-control" id="capacity" name="maxCapacity" placeholder="db">
+            </div>
+            <button type="submit" class="btn btn-success">Mentés</button>
+        </form>
+    </div>
+
+</div>
+
+<% include partials/footer %>

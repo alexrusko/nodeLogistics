@@ -1,0 +1,29 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="page-nav">
+        <h2>Új termék felvétele</h2>
+        <a href="/products">
+            <i class="fas fa-arrow-left"></i> Vissza</a>
+    </div>
+    <div class="content">
+        <form method="POST">
+            <div class="form-group">
+                <label for="productName">Termék megnevezése</label>
+                <input type="text" value="<%= typeof product === 'undefined' ? '' : product.name %>" class="form-control" id="productName" name="name" placeholder="pl. Apple Iphone 8">
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Kép URL</label>
+                <input type="text" value="<%= typeof product === 'undefined' ? '' : product.imageUrl %>" class="form-control" id="imageUrl" name="imageUrl">
+            </div>
+            <div class="form-group">
+                <label for="unitPrice">Egységár</label>
+                <input type="number" value="<%= typeof product === 'undefined' ? '' : product.unitPrice %>" class="form-control" id="unitPrice" placeholder="Ft" name="unitPrice">
+            </div>
+            <button type="submit" class="btn btn-success">Mentés</button>
+        </form>
+    </div>
+
+</div>
+
+<% include partials/footer %>

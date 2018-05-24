@@ -1,0 +1,48 @@
+<% include partials/header %>
+
+    <div class="container">
+        <div class="page-nav">
+            <h2>Termékek</h2>
+            <a href="/products/add">
+                <i class="fas fa-plus-circle"></i> Új termék felvétele</a>
+        </div>
+        <div class="content">
+            <% productList.forEach((product) => { %>
+                <div class="card">
+                    <img class="card-img-top" src="<%= product.imageUrl %>" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= product.name %>
+                        </h5>
+                        <hr>
+                        <p class="card-text">Egységár:
+                            <strong>
+                                <%= product.unitPrice %> Ft</strong>
+                        </p>
+                        <a href="/products/<%= product._id %>/edit">
+                            <i class="far fa-edit"></i>
+                        </a>
+                        <a href="#" onclick="confirmModal('/products/<%= product._id %>/delete', 'delete')" data-toggle="modal" data-target="#confirmModal">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 id="confirmTitle"></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nem</button>
+                    <a id="confirmBtn" class="btn">Igen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% include partials/footer %>

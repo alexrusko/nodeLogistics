@@ -1,0 +1,57 @@
+<% include partials/header %>
+
+    <div class="container">
+        <div class="page-nav">
+            <h2>Járművek</h2>
+            <a href="/vehicles/add">
+                <i class="fas fa-plus-circle"></i> Új jármű felvétele</a>
+        </div>
+        <div class="content">
+            <% vehicleList.forEach((vehicle) => { %>
+                <div class="card">
+                        <img class="card-img-top" src="<%= vehicle.imageUrl %>" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= vehicle.type %></h5>
+                            <hr>
+                            <p class="card-text">Rendszám:
+                                <strong><%= vehicle.licensePlate %></strong>
+                            </p>
+                            <p class="card-text">Maximális kapacitás:
+                                <strong><%= vehicle.maxCapacity %> db</strong>
+                            </p>
+                            <p class="card-text">Szabad kapacitás:
+                                <strong><%= vehicle.maxCapacity-vehicle.currentCapacity %> db</strong>
+                            </p>
+                            <p class="card-text">Státusz:
+                                <strong><%= vehicle.state %></strong>
+                            </p>
+                            <a href="/vehicles/<%= vehicle._id %>/view">
+                                <i class="fas fa-bars"></i>
+                            </a>
+                            <a href="/vehicles/<%= vehicle._id %>/edit">
+                                <i class="far fa-edit"></i>
+                            </a>
+                            <a href="#" onclick="confirmModal('/vehicles/<%= vehicle._id %>/delete', 'delete')" data-toggle="modal" data-target="#confirmModal">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 id="confirmTitle"></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nem</button>
+                    <a id="confirmBtn" class="btn">Igen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% include partials/footer %>
